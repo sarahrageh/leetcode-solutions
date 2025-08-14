@@ -1,0 +1,2 @@
+select date_format(trans_date, '20%y-%m') as month, country, count(*) as trans_count, count(case when state like 'app%' then 1 end) as approved_count, sum(amount) as trans_total_amount, ifnull(sum(case when state like 'app%' then amount end), 0) as approved_total_amount
+from transactions group by month, country;
